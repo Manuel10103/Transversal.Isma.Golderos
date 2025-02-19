@@ -1,0 +1,121 @@
+/* Importa la fuente personalizada */
+@font-face {
+    font-family: 'PeakyBlindersFont';
+    src: url('../fuente/Alycidon-Condensed.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Estilos generales */
+body {
+    background-image: url('../imagenes/peakyblin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'PeakyBlindersFont', sans-serif;
+}
+
+/* Contenedor del formulario */
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    text-align: center;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'PeakyBlindersFont', sans-serif; /* Fuente aplicada al contenedor */
+    
+}
+
+/* Estilos para el título */
+h2 {
+    color: white;
+    font-size: 50px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Ajuste del centrado de los inputs y botones */
+input, select, button {
+    width: calc(100% - 10px); /* Deja un margen de 20px a cada lado */
+    padding: 12px;
+    margin: 8px auto;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'PeakyBlindersFont', sans-serif; /* Fuente aplicada */
+    letter-spacing: 4px;
+     font-size: 30px;
+}
+
+/* Estilos específicos para los inputs */
+input, select {
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+}
+
+/* Botón */
+button {
+    background: white;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'PeakyBlindersFont', sans-serif; 
+}
+
+/* Hover en botón */
+button:hover {
+    background: #444;
+    color: white;
+}
+
+a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 22px; /* Aumentamos el tamaño */
+    font-weight: bold; /* Hacemos que se vea más grueso */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    font-family: 'PeakyBlindersFont', sans-serif;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #FFD700; /* Cambia el color al pasar el ratón (opcional) */
+}
+
+/* Estilos para el label de "Rol" */
+label {
+    color: white; /* Cambia el color a blanco */
+    font-size: 30px; /* Aumenta el tamaño de la fuente */
+    font-weight: bold; /* Hace que el texto sea más grueso */
+    display: block; /* Asegura que esté en una línea separada */
+    margin-top: 15px; /* Espaciado para que no quede pegado */
+    text-transform: uppercase; /* Poner en mayúsculas */
+    font-family: 'PeakyBlindersFont', sans-serif; /* Aplicar la fuente */
+    letter-spacing: 3px; /* Espaciado entre letras */
+}
+
+.error-mensaje {
+    font-size: 30px; 
+    font-weight: bold; 
+    color: red; 
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'PeakyBlindersFont', sans-serif; 
+    letter-spacing: 6px; 
+}
+
+
