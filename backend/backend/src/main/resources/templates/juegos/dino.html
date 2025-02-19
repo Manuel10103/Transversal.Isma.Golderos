@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrera del Caballo</title>
+    <link rel="stylesheet" href="/css/Dino_Index.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Fondo animado -->
+        <div class="scene">
+            <img src="/imagenes/caballo.gif" id="caballo" alt="Caballo corriendo" class="caballo">
+        </div>
+        
+        <!-- Panel de apuestas -->
+        <div class="betting-panel">
+            <h1>¡Apuesta en la carrera!</h1>
+            <!-- Saldo del jugador -->
+            <p id="saldo" class="saldo">Saldo: $0</p> 
+
+            <!-- MODAL PARA DEPOSITAR DINERO -->
+            <div id="deposit-modal" class="modal">
+                <div class="modal-content">
+                    <span id="close-modal" class="close">&times;</span>
+                    <h2>Depositar Dinero</h2>
+                    <input type="number" id="deposit-amount" placeholder="Cantidad a depositar" min="1">
+                    <button id="deposit-button">Depositar</button>
+                </div>
+            </div>
+
+            <!-- MODAL PARA RETIRAR DINERO -->
+            <div id="withdraw-modal" class="modal">
+                <div class="modal-content">
+                    <span id="withdraw-close" class="close">&times;</span>
+                    <h2>Retirar Dinero</h2>
+                    <input type="number" id="withdraw-amount" placeholder="Cantidad a retirar" min="1">
+                    <button id="withdraw-button">Retirar</button>
+                </div>
+            </div>
+
+            <!-- MODAL DE PÉRDIDA -->
+            <div id="loss-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-loss-modal">&times;</span>
+                   
+                    <p>¡Te han atrapado! Has perdido tu apuesta.</p>
+                </div>
+            </div>
+
+            <!-- Input para la apuesta -->
+            <label for="bet-amount">Cantidad a apostar:</label>
+            <input type="number" id="bet-amount" placeholder="Introduce tu apuesta" min="1">
+
+            <!-- Contenedor de botones organizado -->
+            <div class="button-container">
+                <div class="left-buttons">
+                    <button id="withdraw-open" class="withdraw-button">Retirar</button>
+                    <button id="deposit-open" class="deposit-button">Depositar</button>
+                </div>
+
+                <div class="center-buttons">
+                    <button id="start-race" class="play-button">Jugar</button>
+                    <button id="stop-race" class="stop-button">Parar</button>
+                </div>
+
+                <div class="right-buttons">
+                    <button class="history-button">Historial</button>
+                </div>
+            </div>
+
+            <p id="result"></p>
+            <p id="multiplicador">x1.00</p> 
+            
+            <div id="historial-container">
+                <h2>Historial de multiplicadores</h2>
+                <div id="historial"></div> 
+            </div>
+        </div>
+    </div>
+    
+    <script src="/js/Dino_Index.js"></script>
+</body>
+</html>

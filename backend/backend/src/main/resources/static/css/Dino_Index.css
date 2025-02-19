@@ -1,0 +1,196 @@
+/* Fondo de pantalla con imagen de la calle */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('/imagenes/fondocalle.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    display: flex; 
+    justify-content: center;
+    align-items: flex-end; 
+    overflow: hidden; 
+}
+
+/* MODALES */
+.modal, #withdraw-modal, #loss-modal, #error-modal {
+    display: none; 
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+
+#loss-modal {
+    z-index: 4; /* Asegúrate de que este modal esté por encima de otros */
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#error-modal {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+}
+
+/* MODAL PARA DEPOSITAR DINERO */
+
+
+/* ESTILOS GENERALES DE MODALES */
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.941);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90vw;
+    max-width: 600px;
+    text-align: center;
+    color: white;
+}
+
+/* BOTÓN DE CERRAR */
+.close {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ff0099; /* Color al pasar el ratón */
+}
+
+/* ESTILO DEL GIF DEL CABALLO */
+.caballo {
+    width: 20vw;
+    height: auto;
+    position: absolute; 
+    bottom: 35vh;
+    left: 0; 
+}
+
+/* ESTILO DEL GIF DEL LAZO */
+.lasso {
+    width: 10vw;
+    height: auto;
+    position: absolute;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden; /* Oculto por defecto */
+}
+
+/* PANEL DE APUESTAS - OCUPA TODO EL ANCHO */
+.betting-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background: rgba(62, 31, 31, 0.8);
+    padding: 15px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* INPUT DE APUESTA */
+#bet-amount {
+    padding: 5px;
+    font-size: 18px;
+    width: 20%;
+    text-align: center;
+}
+
+/* CONTENEDOR DE BOTONES - AJUSTE PARA OCUPAR TODO EL ANCHO */
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* BOTONES */
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #00c853; /* Color verde */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/* BOTONES DE JUGAR Y PARAR */
+#play-button {
+    background-color: #00c853; /* Color verde */
+}
+
+#stop-button {
+    background-color: #d50000; /* Color rojo */
+}
+
+/* BOTONES GENERALES */
+.deposit-button {
+    background-color: #ff6f00; /* Color naranja */
+}
+
+.withdraw-button {
+    background-color: #ff1744; /* Color rojo */
+}
+
+.history-button {
+    background-color: #6200ea; /* Color púrpura */
+}
+
+/* EFECTO HOVER */
+button:hover {
+    filter: brightness(1.2); /* Efecto de brillo al pasar el ratón */
+}
+
+/* MULTIPLICADOR */
+#multiplicador {
+    position: absolute;
+    top: -70vh; /* Ajusta según sea necesario */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4vw;
+    color: yellow; 
+}
+
+/* HISTORIAL DEL CONTADOR */
+#historial-container {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+#historial {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    flex-wrap: wrap;
+}
+
+#historial span {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
