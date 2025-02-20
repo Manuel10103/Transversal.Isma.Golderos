@@ -63,11 +63,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.tu_proyecto</groupId>
-			<artifactId>casino-app</artifactId>
-			<version>1.0.0</version>
-		</dependency>
+		
 	</dependencies>
 
 	<build>
