@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class JuegoController {
 
-    @GetMapping("/juegos/tragaperras")
+    @GetMapping("/tragaperras")
     public String mostrarTragaperras() {
         return "juegos/tragaperras"; 
     }
 
-    @GetMapping("/juegos/carrera")
+    @GetMapping("/carrera")
     public String mostrarCarreraCaballos() {
         return "juegos/dino"; 
     }   
