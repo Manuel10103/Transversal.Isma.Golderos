@@ -1,0 +1,523 @@
+#canvas-container{
+	position:absolute;
+	top:-140px;
+}
+canvas {
+
+	transform-origin: top;
+	width: 160px;
+	width: 450px;
+	margin-top: 370px; 
+	transform: scale(0.9) perspective(900px) rotateX(42deg);
+}
+
+.container {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 120px;
+    right: 0;
+    bottom: 0;
+    width: 361px;
+    height: 220px;
+    border: 9px solid rgb(37, 29, 2);
+    border-radius: 5px;
+    background-color: rgb(27, 27, 27);
+    transform: scale(1.6) perspective(1000px) rotateX(30deg);
+    box-shadow: 0 0 10px rgb(191, 181, 0);
+    font-family: Kanit;
+}
+
+.red{background-color:#A91607;box-shadow:inset 0 0 5px black;}
+.black{background-color:black;box-shadow:inset 0 0 2px white;}
+.green{background-color:#1C7022;box-shadow:inset 0 0 5px black;}
+	
+#output{
+	position:absolute;
+	top:-100px;
+	left:300px;
+	width:50px;
+	height:70px;
+	background-color:#bcbf08;
+	color:white;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:2em;
+	border:2px solid rgb(255, 242, 2);
+	box-shadow:5px 5px 5px black;
+}
+.box, .box2{
+	position:absolute;
+	width:25px;
+	height:30px;
+	color:rgb(238, 199, 4);
+	font-size:0.8em;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	border:0.5px solid #ffffff;
+	user-select: none;
+	cursor:pointer;
+}
+.box2{
+	border:none;
+	border-top:2px solid black;
+	box-shadow:inset 0 0 10px black;
+}
+.token{
+	position:absolute;
+	top:5px;
+	left:2px;
+	width:17px;
+	height:17px;
+	border-radius:50%;
+	background-color:white;
+	color:black;
+	font-size:0.8em;
+	border:2.5px dashed rgb(255, 0, 0);
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	user-select: none;
+}
+
+.more100{
+	font-size:0.6em;
+}
+.choicetoken{
+	position:absolute;
+	width:20px;
+	height:20px;
+	border-radius:50%;
+	color:black;
+	border:2.5px dashed rgb(255, 0, 0);
+	background-color:white;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:0.6em;
+	font-weight:bold;
+	cursor:pointer;
+	box-shadow:0 0 10px transparent;
+}
+
+.choicetoken.token1 {
+    border-color: blue; 
+}
+
+.choicetoken.token5 {
+    border-color: rgb(223, 0, 0); 
+}
+
+.choicetoken.token10 {
+    border-color: rgb(255, 255, 0);
+}
+
+.choicetoken.tokenall {
+    border-color: purple;
+}
+
+.choicetoken.token1less {
+    border-color: orange; 
+}
+
+.choicetoken.token5less {
+    border-color: cyan; 
+}
+
+.choicetoken.token10less {
+    border-color: magenta; 
+}
+
+
+.token1{top:160px;left:5px;box-shadow: 0 0 10px black;transform:scale(1.2);}
+.token5{top:160px;left:35px;}
+.token10{top:160px;left:65px;}
+.tokenall{top:160px;left:95px;font-size:0.5em;}
+.token1less{top:160px;left:270px;}
+.token5less{top:160px;left:300px;}
+.token10less{top:160px;left:330px;}
+
+.b0{left:0;top:0;height:90px;width:35px;border-radius:50% 0 0 50%;}
+.b1{top:0;left:35px;}
+.b2{top:0;left:60px;}
+.b3{top:0;left:85px;}
+.b4{top:0;left:110px;}
+.b5{top:0;left:135px;}
+.b6{top:0;left:160px;}
+.b7{top:0;left:185px;}
+.b8{top:0;left:210px;}
+.b9{top:0;left:235px;}
+.b10{top:0;left:260px;}
+.b11{top:0;left:285px;}
+.b12{top:0;left:310px;}
+.b13{top:0; left:335px;}
+   
+.b14{top:30px;left:35px;}
+.b15{top:30px;left:60px;}
+.b16{top:30px;left:85px;}
+.b17{top:30px;left:110px;}
+.b18{top:30px;left:135px;}
+.b19{top:30px;left:160px;}
+.b20{top:30px;left:185px;}
+.b21{top:30px;left:210px;}
+.b22{top:30px;left:235px;}
+.b23{top:30px;left:260px;}
+.b24{top:30px;left:285px;}
+.b25{top:30px;left:310px;}
+.b26{top:30px; left:335px;}
+
+.b27{top:60px;left:35px;}
+.b28{top:60px;left:60px;}
+.b29{top:60px;left:85px;}
+.b30{top:60px;left:110px;}
+.b31{top:60px;left:135px;}
+.b32{top:60px;left:160px;}
+.b33{top:60px;left:185px;}
+.b34{top:60px;left:210px;}
+.b35{top:60px;left:235px;}
+.b36{top:60px;left:260px;}
+.b37{top:60px;left:285px;}
+.b38{top:60px;left:310px;}
+.b39{top:60px; left:335px;}  
+
+.b40{top:90px;left:35px;width:100px;}
+.b41{top:90px;left:135px;width:100px;}
+.b42{top:90px;left:235px;width:100px;}
+
+.b43{top:120px;left:35px;width:50px;}
+.b44{top:120px;left:85px;width:50px;}
+.b45{top:120px;left:135px;width:50px;}
+.b46{top:120px;left:185px;width:50px;}
+.b47{top:120px;left:235px;width:50px;}
+.b48{top:120px;left:285px;width:50px;}
+
+.b49{top:190px;left:0;width:100px;background-color:white;color:black;font-size:0.8em;}
+.b50{top:190px;left:100px;width:161px;background-color:#A91607;}
+.b51{top:190px;left:261px;width:100px;background-color:white;color:black;font-size:0.8em;}
+
+#cash{
+	position:absolute;
+	top:192px;
+	left:2px;
+	font-size:.5em;
+	font-weight:bold;
+}
+
+#bet{
+
+	position:absolute;
+	top:192px;
+	left:346px;
+	font-size:.5em;
+	font-weight:bold;
+}
+
+#play{
+
+	position:absolute;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	color:white;
+	font-size:1em;
+	top:240px;
+	left:122px;
+	width:70px;
+	height:13px;
+	border-radius:30px;
+	cursor:pointer;
+	background-color: #ffd900;
+	padding: 10px 20px;
+	transition: background-color 0.1s; 
+	font-family: 'Kanit', sans-serif;
+	box-shadow: 0 0 10px #7f8608;
+	border: 2px solid ;
+}
+
+
+#play:hover {
+	background-color: #796e29; 
+}
+  
+
+#info{
+	display:none;
+	position:absolute;
+	width:380px;
+	height:240px;
+	top:-10px;
+	left:-10px;
+	border-radius:10px;
+	background:white;
+	font-size:0.8em;
+	text-align:center;
+	background-color:rgb(95, 81, 20);
+	color:white;
+	border:2px solid white;
+	user-select: none;
+	box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+h3{
+	text-decoration:underline;
+}
+#close{
+	position:absolute;
+	top:10px;
+	right:10px;
+	color:white;
+	cursor:pointer;
+}
+
+#btninfo{
+	position:absolute;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	color:white;
+	width:10px;
+	height:10px;
+	bottom:-50px;
+	right:0px;
+	padding:5px;
+	border-radius:50%;
+	background-color:#f7c10f;
+	border:2px solid white;
+	box-shadow: 0 0 10px rgba(221, 182, 8, 0.659);
+	font-size:0.7em;
+	cursor:pointer;
+}
+
+#finish{
+	display:none;
+	justify-content:center;
+	align-items:center;
+	position:absolute;
+	font-size:1.5em;
+	top:235px;
+	left:-5px;
+	width:360px;
+	height:40px;
+	color: white;
+	background:rgb(71, 71, 71);
+	border-radius:10px;
+	border:3px solid rgb(251, 255, 0);
+	box-shadow: 0px 0px 10px rgb(255, 234, 1)
+}
+
+#footer{
+	position:fixed;
+	bottom:0;
+	right:0;
+	width:120px;
+	height:30px;
+	color:white;
+	font-size:0.7em;
+	background-color:rgba(0,0,0,.5);
+	border-radius:50px 0 0 0 ;
+}
+
+#lololearn{
+	position:absolute;
+	bottom:8.5px;
+	right:35px;
+}
+
+#loloimg{
+	position:absolute;
+	bottom:5px;
+	right:5px;
+	width:20px;
+	border-radius:50%;
+}
+
+a{
+	color:White;
+}
+
+body {
+    background-image: url('imagenes/peakyblin.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background-image: url('/Assets/peakyblin.jpg');
+    background-size: cover;
+    transform: perspective(1000px) rotateX(30deg);
+    z-index: -1; 
+}
+
+/* Ajustes del logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 80px; 
+    height: auto;
+    filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.5)); 
+}
+.clock-container {
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    color: #fff;
+    font-size: 1.5em;
+    font-family: 'Kanit', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-right: 20px;
+}
+
+.clock {
+    display: inline-block;
+}  
+
+.Ganado {
+    width: 220px;
+    padding: 15px;
+    border-radius: 8px;
+    position: absolute;
+    top: 200px;
+    right: 80px;
+    
+    /*  Estilo Rústico */
+    background: linear-gradient(to bottom, #2e2a26, #1b1a19);
+    border: 3px solid #d4af37; 
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+    
+    /*  Fuente Elegante */
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    color: #e0c078; 
+    
+    /*  Ajuste de Texto */
+    text-align: left;
+    line-height: 1.6;
+}
+
+  
+  /* Estilos para el contenedor de los botones de jugar */
+  .botonesJugar {
+	display: flex;
+	justify-content: space-between;
+	width: 200px;
+	position: absolute; 
+	margin-top: 320px; 
+	right: 110px; 
+	transform: scale(1.1);
+  }
+  
+  /* Estilos para los botones */
+  .ingresar {
+	background-color: #2fa928;
+	color: white;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: background-color 0.1s; 
+	font-family: 'Kanit', sans-serif;
+	box-shadow: 0 0 10px #168210;
+	border: 2px white solid;
+  }
+
+  .retirar{
+	background-color: #ff001e;
+	color: #fff;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: background-color 0.1s; 
+	font-family: 'Kanit', sans-serif;
+	box-shadow: 0 0 10px #af0320;
+	border: 2px solid ;
+  }
+  
+  /* Efecto hover para los botones */
+  .ingresar:hover {
+	background-color: #f5b300; 
+  }
+
+  .retirar:hover {
+	background-color: #b30036; 
+  }
+  
+  /* Estilos para los modales */
+  .modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 1;
+  }
+  
+  .modal-contenido {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 20px;
+	border: 1px solid #ccc;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	font-family: 'Kanit', sans-serif;
+	border-radius: 5px;
+  }
+
+  input {
+    padding: 7px;
+    margin: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top:18px;
+    font-family: 'Kanit', sans-serif;
+    margin-top: 10px;
+}
+  
+.modal-contenido button {
+	display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    background-color: #171414;
+    color: #fff;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-family: 'Kanit', sans-serif;
+    transition: background-color 0.3s; /* Agregamos transición de color al pasar el ratón */
+}
+  
+.modal-contenido button:hover {
+	background-color: #a32f2f;
+}
+
+
+legend {
+	font-size: 16px;
+	font-weight: bold;
+	color: rgba(248, 236, 0, 0.965);
+	
+}
+  
+.resultados {
+	font-size: 14px;
+	color: rgb(255, 255, 255);
+	margin: 10px 0;
+	
+}
