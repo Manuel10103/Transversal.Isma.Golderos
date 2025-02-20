@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Casino Shelby - Usuario Premium</title>
     <link rel="stylesheet" href="/css/casino.css">
-    <script src="/js/casino.js" defer></script> 
+    <script src="/js/casino.js" defer></script>
 </head>
 <body>
     <h1>Bienvenido al Casino Shelby - VIP</h1>
@@ -12,16 +12,16 @@
 
     <div class="game-container">
         <div class="game">
-            <img id="game1" src="/imagenes/tragaperras.webp" alt="Juego 1">
-            <p id="info1">Tragaperras</p>
+            <img id="game1" src="/imagenes/tragaperras.webp" onmouseover="changeGameImage(games[0])" class="game-image">
+            <a href="/tragaperras" class="game-button">Tragaperras</a>
         </div>
         <div class="game">
-            <img id="game2" src="/imagenes/carreraCaballo.webp" alt="Juego 2">
-            <p id="info2">Carrera de caballos</p>
+            <img id="game2" src="/imagenes/carreraCaballo.webp" onmouseover="changeGameImage(games[1])" class="game-image">
+            <a href="/dino" class="game-button">Carrera de caballos</a>
         </div>
         <div class="game">
-            <img id="game3" src="/imagenes/ruleta.webp" alt="Juego 3">
-            <p id="info3">Ruleta Premium</p>
+            <img id="game3" src="/imagenes/ruleta.webp" onmouseover="changeGameImage(games[2])" class="game-image">
+            <a href="/ruleta" class="game-button">Ruleta Premium</a>
         </div>
     </div>
 </body>
