@@ -8,16 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const saldoText = document.getElementById("saldo");
     const historialList = document.getElementById("historial");
     const depositModal = document.getElementById("deposit-modal");
-    const closeModalButton = document.getElementById("close-modal");
-    const depositButton = document.getElementById("deposit-button");
-    const depositAmountInput = document.getElementById("deposit-amount");
     const withdrawModal = document.getElementById("withdraw-modal");
-    const withdrawOpen = document.getElementById("withdraw-open");
-    const withdrawClose = document.getElementById("withdraw-close");
-    const withdrawInput = document.getElementById("withdraw-amount");
+    const depositButton = document.getElementById("deposit-button");
     const withdrawButton = document.getElementById("withdraw-button");
-    const lossModal = document.getElementById("loss-modal");
-    const closeLossModal = document.getElementById("close-loss-modal");
+    const depositAmountInput = document.getElementById("deposit-amount");
+    const withdrawInput = document.getElementById("withdraw-amount");
     const errorModal = document.getElementById("error-modal");
     const errorText = document.getElementById("error-text");
     const closeErrorModal = document.getElementById("close-error-modal");
@@ -27,9 +22,74 @@ document.addEventListener("DOMContentLoaded", () => {
     let multiplicador = 1.00;
     let historialMultiplicadores = [];
     let moveInterval, multiplicadorInterval;
-    /** Botones para iniciar y parar al caballo  */
-    startRaceButton.addEventListener("click", iniciarCarrera);
-    stopRaceButton.addEventListener("click", detenerCaballo);
+    const idUsuario = 1; 
+
+    // Obtener saldo del usuario al cargar la página
+    function obtenerSaldo() {
+        $.ajax({
+            url: "backend/php/obtener_saldo.php",
+            type: "POST",
+            success: function(response) {
+                let data = JSON.parse(response);
+                if (data.status === "success") {
+                    saldo = parseFloat(data.saldo);
+                    actualizarUI();
+                } else {
+                    alert("Error al obtener saldo.");
+                }
+            }
+        });
+    }
+
+    function actualizarSaldo(nuevoSaldo) {
+        $.ajax({
+            url: "backend/php/actualizar_saldo.php",
+            type: "POST",
+            data: { nuevo_saldo: nuevoSaldo },
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    }
+
+    function registrarApuesta(monto, resultado, ganancia, tiempo) {
+        $.ajax({
+            url: "backend/php/registrar_apuesta.php",
+            type: "POST",
+            data: {
+                monto: monto,
+                resultado: resultado,
+                ganancia: ganancia,
+                tiempo_jugado: tiempo
+            },
+            success: function(response) {
+                let data = JSON.parse(response);
+                if (data.status === "success") {
+                    alert(`Apuesta registrada. Nuevo saldo: $${data.nuevo_saldo}`);
+                    obtenerSaldo();
+                } else {
+                    alert("Error al registrar la apuesta.");
+                }
+            }
+        });
+    }
+
+    function manejarDepositoRetiro(monto, tipo) {
+        $.ajax({
+            url: "backend/php/depositar_retirar.php",
+            type: "POST",
+            data: { monto: monto, tipo: tipo },
+            success: function(response) {
+                let data = JSON.parse(response);
+                if (data.status === "success") {
+                    alert(`${tipo} realizado con éxito.`);
+                    obtenerSaldo();
+                } else {
+                    alert("Error: " + data.message);
+                }
+            }
+        });
+    }
 
     function actualizarUI() {
         saldoText.textContent = `Saldo: $${saldo.toFixed(2)}`;
@@ -48,20 +108,19 @@ document.addEventListener("DOMContentLoaded", () => {
     function mostrarError(mensaje) {
         errorText.textContent = mensaje;
         errorModal.style.display = "flex"; 
-        errorModal.classList.add("mostrar");
     }
-    
 
     function iniciarCarrera() {
         if (running) return;
 
-        const betAmount = parseFloat(betAmountInput.value);
+        let betAmount = parseFloat(betAmountInput.value);
         if (isNaN(betAmount) || betAmount <= 0 || betAmount > saldo) {
             mostrarError("Apuesta inválida o saldo insuficiente.");
             return;
         }
 
         saldo -= betAmount;
+        actualizarSaldo(saldo);
         actualizarUI();
 
         running = true;
@@ -92,52 +151,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 caballo.style.left = "0px";
                 historialMultiplicadores.push(multiplicador);
                 actualizarHistorial();
-                lossModal.style.display = "block";
+                mostrarError("¡Perdiste! Intenta de nuevo.");
             }
         }, Math.random() * (10000 - 5000) + 5000);
     }
 
-    function detenerCaballo() {
+    function detenerCarrera() {
         if (!running) return;
 
         running = false;
         clearInterval(multiplicadorInterval);
         clearInterval(moveInterval);
 
-        const betAmount = parseFloat(betAmountInput.value);
-        saldo += betAmount * multiplicador;
+        let betAmount = parseFloat(betAmountInput.value);
+        let ganancia = betAmount * multiplicador;
+        saldo += ganancia;
 
-        resultText.textContent = `¡Ganaste! Has ganado $${(betAmount * multiplicador).toFixed(2)}`;
-        resultText.style.color = "green";
-
-        historialMultiplicadores.push(multiplicador);
-        actualizarHistorial();
+        actualizarSaldo(saldo);
+        registrarApuesta(betAmount, "GANADO", ganancia, Math.floor(Math.random() * 100));
         actualizarUI();
-        caballo.style.left = "0px"; // Reinicia la posición del caballo
-    }
-
-    function abrirModal(modal) {
-        modal.style.display = "block";
-    }
-    
-    function cerrarModal(modal) {
-        modal.style.display = "none";
+        caballo.style.left = "0px";
     }
 
     depositButton.addEventListener("click", () => {
-        const depositAmount = parseFloat(depositAmountInput.value);
+        let depositAmount = parseFloat(depositAmountInput.value);
         if (isNaN(depositAmount) || depositAmount <= 0) {
             mostrarError("Introduce una cantidad válida para depositar.");
             return;
         }
 
-        saldo += depositAmount;
-        actualizarUI();
-        cerrarModal(depositModal);
+        manejarDepositoRetiro(depositAmount, "DEPOSITO");
     });
 
     withdrawButton.addEventListener("click", () => {
-        const withdrawAmount = parseFloat(withdrawInput.value);
+        let withdrawAmount = parseFloat(withdrawInput.value);
         if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
             mostrarError("Introduce una cantidad válida para retirar.");
             return;
@@ -148,29 +195,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        saldo -= withdrawAmount;
-        actualizarUI();
-        cerrarModal(withdrawModal);
+        manejarDepositoRetiro(withdrawAmount, "RETIRO");
     });
 
-    // EVENTOS PARA ABRIR Y CERRAR MODALES
-    document.getElementById("deposit-open").addEventListener("click", () => abrirModal(depositModal));
-    document.getElementById("withdraw-open").addEventListener("click", () => abrirModal(withdrawModal));
-    closeModalButton.addEventListener("click", () => cerrarModal(depositModal));
-    withdrawClose.addEventListener("click", () => cerrarModal(withdrawModal));
-    closeLossModal.addEventListener("click", () => cerrarModal(lossModal));
-    closeErrorModal.addEventListener("click", () => cerrarModal(errorModal));
-
-    // CERRAR MODALES AL HACER CLIC FUERA
-    window.addEventListener("click", (event) => {
-        if (event.target === depositModal) cerrarModal(depositModal);
-        if (event.target === withdrawModal) cerrarModal(withdrawModal);
-        if (event.target === lossModal) cerrarModal(lossModal);
-        if (event.target === errorModal) cerrarModal(errorModal);
-    });
-
-    
-    saldoText.addEventListener("click", () => abrirModal(depositModal));
-
+    obtenerSaldo(); 
     actualizarUI();
+    startRaceButton.addEventListener("click", iniciarCarrera);
+    stopRaceButton.addEventListener("click", detenerCarrera);
 });
