@@ -98,13 +98,22 @@ const choiceToken = (val) => {
 
     // Verificar si el saldo es insuficiente para realizar la apuesta
     if (account < choiceBet) {
-        alert("Necesitas tener saldo suficiente para realizar esta apuesta.");
-        return;
-    }
+		mostrarError("Necesitas tener saldo suficiente para realizar esta apuesta.");
+		return;
+	}
+	
 
     // Actualizar el valor apostado en el HTML
     actualizarApuestaEnHTML();
 };
+	function mostrarError(mensaje) {
+		document.getElementById("mensajeError").innerText = mensaje;
+		document.getElementById("modalError").style.display = "block";
+	}
+
+	function cerrarModal(idModal) {
+		document.getElementById(idModal).style.display = "none";
+	}
 
 
 const token = (box) => {
@@ -424,7 +433,7 @@ function updateClock() {
 
     document.getElementById("clock").innerHTML = timeString;
 
-    setTimeout(updateClock, 1000); // Actualiza cada segundo
+    setTimeout(updateClock, 1000); 
 }
 
 // Llama a la función para iniciar el reloj
@@ -446,17 +455,17 @@ function ingresar() {
     var saldo = parseInt(saldoInput);
 
     cerrarModal("modalIngresar");
-
+	
     // Verificar si la cantidad ingresada es un número válido y mayor que cero
     if (isNaN(saldo) || saldo <= 0 || saldoInput !== saldo.toString()) {
-        alert("Por favor, ingrese una cantidad válida que sea un número mayor que cero.");
+        mostrarError("Por favor, ingrese una cantidad válida que sea un número mayor que cero.");
     } else {
-        account = saldo; // Establecer el saldo ingresado como saldo de la cuenta
-        tempAccount = saldo; // Establecer el saldo ingresado como saldo temporal
+        account = saldo; 
+        tempAccount = saldo; 
         var saldoElement = document.getElementById("Saldo");
-        saldoElement.textContent = account + "€"; // Actualizar el saldo mostrado en el HTML
+        saldoElement.textContent = account + "€"; 
         var compteElement = document.getElementById("compte");
-        compteElement.textContent = account + "€"; // Actualizar el saldo mostrado en la ubicación específica del HTML
+        compteElement.textContent = account + "€"; 
     }
 }
 
@@ -471,7 +480,7 @@ function retirar() {
     var compteElement = document.getElementById("compte");
 
     if (isNaN(saldo) || saldo <= 0 || saldo > saldoActual) {
-        alert("Por favor, ingrese una cantidad válida y que no exceda el saldo actual.");
+        mostrarError("Por favor, ingrese una cantidad válida y que no exceda el saldo actual.");
     } else {
         // Asegúrate de que el saldo no se vuelva negativo
         var nuevoSaldo = Math.max(0, saldoActual - saldo);
