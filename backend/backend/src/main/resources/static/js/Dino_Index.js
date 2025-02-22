@@ -7,29 +7,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const multiplicadorText = document.getElementById("multiplicador");
     const saldoText = document.getElementById("saldo");
     const historialList = document.getElementById("historial");
+
+    // Modales y botones
     const depositModal = document.getElementById("deposit-modal");
-    const closeModalButton = document.getElementById("close-modal");
-    const depositButton = document.getElementById("deposit-button");
-    const depositAmountInput = document.getElementById("deposit-amount");
     const withdrawModal = document.getElementById("withdraw-modal");
-    const withdrawOpen = document.getElementById("withdraw-open");
-    const withdrawClose = document.getElementById("withdraw-close");
-    const withdrawInput = document.getElementById("withdraw-amount");
+    const depositButton = document.getElementById("deposit-button");
     const withdrawButton = document.getElementById("withdraw-button");
-    const lossModal = document.getElementById("loss-modal");
-    const closeLossModal = document.getElementById("close-loss-modal");
+    const depositAmountInput = document.getElementById("deposit-amount");
+    const withdrawInput = document.getElementById("withdraw-amount");
     const errorModal = document.getElementById("error-modal");
     const errorText = document.getElementById("error-text");
-    const closeErrorModal = document.getElementById("close-error-modal");
+    const lossModal = document.getElementById("loss-modal");
 
     let running = false;
-    let saldo = 0;
+    let saldo = 0; // Saldo inicial de prueba
     let multiplicador = 1.00;
     let historialMultiplicadores = [];
     let moveInterval, multiplicadorInterval;
-    /** Botones para iniciar y parar al caballo  */
-    startRaceButton.addEventListener("click", iniciarCarrera);
-    stopRaceButton.addEventListener("click", detenerCaballo);
 
     function actualizarUI() {
         saldoText.textContent = `Saldo: $${saldo.toFixed(2)}`;
@@ -47,14 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mostrarError(mensaje) {
         errorText.textContent = mensaje;
-        errorModal.style.display = "flex"; 
-        errorModal.classList.add("mostrar");
+        errorModal.style.display = "flex";
+        setTimeout(() => errorModal.style.display = "none", 3000);
     }
-    
 
     function iniciarCarrera() {
         if (running) return;
 
+        console.log("🚀 Iniciando carrera...");
         const betAmount = parseFloat(betAmountInput.value);
         if (isNaN(betAmount) || betAmount <= 0 || betAmount > saldo) {
             mostrarError("Apuesta inválida o saldo insuficiente.");
@@ -63,19 +57,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         saldo -= betAmount;
         actualizarUI();
-
         running = true;
         multiplicador = 1.00;
         resultText.textContent = "";
         multiplicadorText.style.visibility = "visible";
+        caballo.style.left = "0px"; // Reiniciar posición
 
+        // 🔹 Iniciar el multiplicador
         multiplicadorInterval = setInterval(() => {
             multiplicador += 0.05;
             actualizarUI();
         }, 100);
 
+        // 🔹 Mover el caballo
         let position = 0;
         moveInterval = setInterval(() => {
+            console.log(`🏇 Caballo en posición: ${position}`);
             if (!running || position >= window.innerWidth - 150) {
                 clearInterval(moveInterval);
                 return;
@@ -84,15 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
             caballo.style.left = position + "px";
         }, 50);
 
+        // 🔹 Detener la carrera aleatoriamente entre 5s y 10s
         setTimeout(() => {
             if (running) {
                 running = false;
                 clearInterval(multiplicadorInterval);
                 clearInterval(moveInterval);
-                caballo.style.left = "0px";
                 historialMultiplicadores.push(multiplicador);
                 actualizarHistorial();
                 lossModal.style.display = "block";
+                console.log("🏁 Carrera finalizada.");
             }
         }, Math.random() * (10000 - 5000) + 5000);
     }
@@ -105,19 +103,20 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(moveInterval);
 
         const betAmount = parseFloat(betAmountInput.value);
-        saldo += betAmount * multiplicador;
+        const ganancia = betAmount * multiplicador;
+        saldo += ganancia;
 
-        resultText.textContent = `¡Ganaste! Has ganado $${(betAmount * multiplicador).toFixed(2)}`;
+        resultText.textContent = `¡Ganaste! Has ganado $${ganancia.toFixed(2)}`;
         resultText.style.color = "green";
 
         historialMultiplicadores.push(multiplicador);
         actualizarHistorial();
         actualizarUI();
-        caballo.style.left = "0px"; // Reinicia la posición del caballo
+        caballo.style.left = "0px"; 
     }
 
     function abrirModal(modal) {
-        modal.style.display = "block";
+        modal.style.display = "flex";
     }
     
     function cerrarModal(modal) {
@@ -156,10 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // EVENTOS PARA ABRIR Y CERRAR MODALES
     document.getElementById("deposit-open").addEventListener("click", () => abrirModal(depositModal));
     document.getElementById("withdraw-open").addEventListener("click", () => abrirModal(withdrawModal));
-    closeModalButton.addEventListener("click", () => cerrarModal(depositModal));
-    withdrawClose.addEventListener("click", () => cerrarModal(withdrawModal));
-    closeLossModal.addEventListener("click", () => cerrarModal(lossModal));
-    closeErrorModal.addEventListener("click", () => cerrarModal(errorModal));
+    document.getElementById("close-modal").addEventListener("click", () => cerrarModal(depositModal));
+    document.getElementById("withdraw-close").addEventListener("click", () => cerrarModal(withdrawModal));
 
     // CERRAR MODALES AL HACER CLIC FUERA
     window.addEventListener("click", (event) => {
@@ -169,8 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.target === errorModal) cerrarModal(errorModal);
     });
 
-    
-    saldoText.addEventListener("click", () => abrirModal(depositModal));
+    startRaceButton.addEventListener("click", iniciarCarrera);
+    stopRaceButton.addEventListener("click", detenerCaballo);
 
     actualizarUI();
 });
