@@ -12,7 +12,7 @@ public class JuegoController {
         return "juegos/tragaperras"; 
     }
 
-    @GetMapping("/carrera")
+    @GetMapping("/dino")
     public String mostrarCarreraCaballos() {
         return "juegos/dino"; 
     }   

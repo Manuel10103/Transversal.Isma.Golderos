@@ -4,23 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrera del Caballo</title>
-    <link rel="stylesheet" href="Dino_Index.css">
+    <link rel="stylesheet" href="/css/Dino_Index.css"> <!-- ✅ Ruta corregida -->
 </head>
 <body>
     <div class="game-container">
-        <!-- Fondo animado -->
         <div class="scene">
-            <img src="Assets/caballo.gif" id="caballo" alt="Caballo corriendo" class="caballo">
+            <img src="/imagenes/caballo.gif" id="caballo" alt="Caballo corriendo" class="caballo"> <!-- ✅ Ruta corregida -->
         </div>
-        
-        <!-- Panel de apuestas -->
-         
+
         <div class="betting-panel">
             <h1 id="apuestacarrera">¡Apuesta en la carrera!</h1>
-            <!-- Saldo del jugador -->
             <p id="saldo" class="saldo">Saldo: $0</p> 
 
-            <!-- MODAL PARA DEPOSITAR DINERO -->
             <div id="deposit-modal" class="modal">
                 <div class="modal-content">
                     <span id="close-modal" class="close">&times;</span>
@@ -30,7 +25,6 @@
                 </div>
             </div>
 
-            <!-- MODAL PARA RETIRAR DINERO -->
             <div id="withdraw-modal" class="modal">
                 <div class="modal-content">
                     <span id="withdraw-close" class="close">&times;</span>
@@ -40,7 +34,6 @@
                 </div>
             </div>
 
-            <!-- MODAL DE PÉRDIDA -->
             <div id="loss-modal" class="modal">
                 <div class="modal-content">
                     <span class="close" id="close-loss-modal">&times;</span>
@@ -48,11 +41,9 @@
                 </div>
             </div>
 
-            <!-- Input para la apuesta -->
             <label for="bet-amount">Cantidad a apostar:</label>
             <input type="number" id="bet-amount" placeholder="Introduce tu apuesta" min="1">
 
-            <!-- Contenedor de botones organizado -->
             <div class="button-container">
                 <div class="left-buttons">
                     <button id="withdraw-open" class="withdraw-button">Retirar</button>
@@ -63,9 +54,6 @@
                     <button id="start-race" class="play-button">Jugar</button>
                     <button id="stop-race" class="stop-button">Parar</button>
                 </div>
-
-                <div class="right-buttons">
-                </div>
             </div>
 
             <p id="result"></p>
@@ -75,17 +63,16 @@
                 <h2>Historial de multiplicadores</h2>
                 <div id="historial"></div> 
             </div>
-            <!-- MODAL DE ERROR -->
-        <div id="error-modal" class="modal">
-            <div class="modal-content">
-                <span id="close-error-modal" class="close">&times;</span>
-                <p id="error-text"></p>
+
+            <div id="error-modal" class="modal">
+                <div class="modal-content">
+                    <span id="close-error-modal" class="close">&times;</span>
+                    <p id="error-text"></p>
+                </div>
             </div>
         </div>
-
-        </div>
     </div>
-    
-    <script th:src="@{/js/Dino_Index.js}"></script>
+
+    <script src="/js/Dino_Index.js"></script> <!-- ✅ Ruta corregida -->
 </body>
 </html>
