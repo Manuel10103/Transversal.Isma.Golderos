@@ -1,0 +1,425 @@
+:root {
+    --primary-color: rgba(0, 0, 0, 0.8);
+    --secundary-color: #b68c2b;
+}
+
+body {
+    background-image: url('assets/Fondotragaperras.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.blanco-y-negro {
+    filter: grayscale(100%);
+}
+
+#blancoynegro {
+    font-family: 'PEAKYBLINDERSFONT', Arial, sans-serif;
+    background-color: var(--secundary-color);
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#toggle-music {
+    background-color: var(--secundary-color);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+#toggle-music::before {
+    content: '🔊';
+}
+
+#toggle-music.muted::before {
+    content: '🔈';
+}
+
+#volume-control {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#volume-control::-webkit-slider-thumb,
+#volume-control::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--secundary-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 1px;
+}
+
+.header-left {
+    left: 10px;
+}
+
+.header-right {
+    right: 10px;
+}
+
+#saldo {
+    color: var(--secundary-color);
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--secundary-color);
+    text-align: center;
+    padding: 10px 0;
+    z-index: 2;
+}
+
+#ingresar-dinero,
+#retirar-dinero {
+    background-color: var(--secundary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+    font-family: 'PEAKYBLINDERSFONT', Arial, sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#ingresar-dinero:hover,
+#retirar-dinero:hover {
+    background-color: #b68c2b;
+    color: #000;
+}
+
+@font-face {
+    font-family: "PEAKYBLINDERSFONT";
+    src: url("Fuentes/Salvaje Oeste.otf") format("opentype");
+}
+
+header h1 {
+    font-family: 'PEAKYBLINDERSFONT', Alycidon-Condensed, sans-serif;
+    margin: 0;
+    font-size: 470%;
+    letter-spacing: 12px;
+    padding-top: 15px;
+}
+
+.clock {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.modal {
+    font-family: 'PEAKYBLINDERSFONT', Alycidon-Condensed, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: var(--secundary-color);
+    font-size: 150%;
+    letter-spacing: 6px;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    padding-top: 120px;
+}
+
+.slot-machine-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slot-machine {
+    width: 500px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 8px solid #312f23;
+    border-radius: 20px;
+    padding: 15px;
+    background-color: #222;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+
+    display: flex;
+    gap: 10px;
+}
+/* Estilo para el botón de llanta */
+.llanta-button {
+    font-size: 2rem;
+    cursor: pointer;
+    position:sticky;
+    top: 1%;
+    text-align: center;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: #333;
+    border: 2px solid #555;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.llanta-button:hover {
+    background-color: #555; /* Color al pasar el mouse por encima */
+}
+.combinations-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent;
+}
+
+.combination_boina img,
+.combination_revolver img,
+.combination_cigarrillos img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    background-color: transparent;
+}
+
+.combination_boina,
+.combination_revolver,
+.combination_cigarrillos {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.premio-text {
+    font-size: 18px;
+    color: #333;
+    margin-left: 10px;
+}
+
+.premio-valor {
+    color: var(--secundary-color); /* Verde para destacar los premios */
+    font-weight: bold;
+}
+
+
+.premio-text {
+    font-family: 'PEAKYBLINDERSFONT', Alycidon-Condensed, sans-serif;
+    color: var(--secundary-color);
+    font-size: 50px;
+    letter-spacing: 5px;
+    margin-left: 15px;
+}
+
+.reel {
+    width: 100px;
+    height: 200px;
+    background-color: #444;
+    border-radius: 15px;
+    border: 5px solid #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.reel-container {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s ease; /* Animación del giro */
+}
+
+/* Ajuste de las imágenes */
+.reel-container img {
+    width: 100%;          /* Ajuste para el tamaño completo del carril */
+    height: 100px;        /* Altura de cada imagen para que quepan dos en el carril */
+    object-fit: cover;    /* Ajuste sin deformación */
+}
+
+
+
+.separador {
+    width: 3px;
+    height: 100%;
+    background-color: #FFD700;
+    border-radius: 2px;
+}
+
+.side-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    background-image: url('lateral.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+.reel img {
+    width: 80%;      /* Ajusta el tamaño según sea necesario */
+    height: auto;    /* Mantiene la proporción de la imagen */
+    object-fit: contain; /* Ajusta las imágenes sin deformarlas */
+}/* Estilo para el modal de felicitaciones */
+/* Estilo genérico para los modales */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex; /* Usar flexbox para centrar */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+.modal .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Añade sombra para destacar */
+    width: 80%; /* Ancho del modal */
+    max-width: 400px; /* Ancho máximo */
+}
+
+.modal h2 {
+    font-size: 24px;
+    color: #28a745; /* Verde para indicar éxito */
+    margin-bottom: 10px;
+}
+
+.modal p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.modal .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.modal .close:hover {
+    color: #000;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+
+/* Estilo para el modal de premios */
+#premioModal {
+  
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex; /* Usar flexbox para centrar */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+#premioModal h2 {
+    color: #28a745; /* Verde */
+    margin-bottom: 10px;
+}
+
+#premioModal p {
+    color: #333; /* Texto oscuro */
+    font-size: 1.1em;
+}
+
+#premioModal button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#premioModal button:hover {
+    background-color: #218838;
+}

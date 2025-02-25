@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAGAPERRAS Shelby</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body id="body">
+    <div class="background-container">
+
+    <!-- Cabecera -->
+    <header>
+        <div class="header-left">
+        
+        <button type="button" id="blancoynegro">blanco y negro</button>
+        
+        <!-- Audio y control de volumen -->
+        <button type="button" id="toggle-music" class="pause"></button>
+        <audio id="ambiente" src="assets/musica.mp3" autoplay loop></audio>
+        <input type="range" id="volume-control" min="0" max="1" value="0.5" step="0.1">
+        
+        </div>    
+
+        <h1>Tragaperras Shelby</h1>
+        <div class="header-right">
+         <!-- Botones para ingresar y retirar dinero -->
+        <button type="button" id="ingresar-dinero">Ingresar Dinero</button>
+        <button type="button" id="retirar-dinero">Retirar Dinero</button>
+        <p id="saldo">Saldo: €0</p>
+        </div>
+        <!--hora siempre aciva-->
+        <div class="clock" id="clock"></div>
+        
+    </header>
+
+    <!-- Fondos laterales -->
+    <div class="side-background left"></div>
+    <div class="side-background right"></div>
+
+    <!-- Modal para ingresar/retirar dinero -->
+    <div id="dineroModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">CANTIDAD:</h2>
+            <input type="number" id="monto" min="0" step="0.01">
+            <button id="confirmar">Confirmar</button>
+        </div>
+    </div>
+     <!-- Modal para necesitar más saldo -->
+     <div id="necesitaSaldoModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Necesitas mas saldo</h2>
+            <p>Por favor, ingresa mas saldo para continuar con la operacion.</p>
+            <button id="cerrar-necesita-saldo">Cerrar</button>
+        </div>
+    </div>
+    <!-- Modal de Felicitaciones -->
+    <div id="felicitacionesModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-felicitaciones">&times;</span>
+            <h2>Felicidades</h2>
+            <p>Has ganado 50 centimos por obtener 4 revolvers</p>
+        </div>
+    </div>
+    
+    <!-- Modal de Premios (Premios genéricos para boinas y cigarrillos) -->
+    <div id="premioModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-premio">&times;</span>
+            <h2>¡Premio!</h2>
+            <p id="premio-message"></p>
+        </div>
+    </div>
+    <div id="errorModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="cerrar-error-modal">&times;</span>
+            <p id="error-message">Por favor, introduce un saldo valido mayor a 0.</p>
+        </div>
+    </div>
+    
+    
+
+    <!-- Contenedor principal de la máquina tragaperras y las combinaciones -->
+    <div class="main-container">
+        <!-- Combinaciones de símbolos -->
+        <div class="combinations-container">
+            <div class="combination_boina">
+                <img src="assets/boina.png" alt="Boina">
+                <img src="assets/boina.png" alt="Boina">
+                <img src="assets/boina.png" alt="Boina">
+                <img src="assets/boina.png" alt="Boina">
+                <h1 class="premio-text">PREMIO: <span class="premio-valor">10 monedas</span></h1>
+            </div>
+            <div class="combination_revolver">
+                <img src="assets/Revolver.png" alt="Pistola">
+                <img src="assets/Revolver.png" alt="Pistola">
+                <img src="assets/Revolver.png" alt="Pistola">
+                <img src="assets/Revolver.png" alt="Pistola">
+                <h1 class="premio-text">PREMIO: <span class="premio-valor">0'50 monedas</span></h1>
+            </div>
+            <div class="combination_cigarrillos">
+                <img src="assets/cigarrillos.png" alt="Cigarrillo">
+                <img src="assets/cigarrillos.png" alt="Cigarrillo">
+                <img src="assets/cigarrillos.png" alt="Cigarrillo">
+                <img src="assets/cigarrillos.png" alt="Cigarrillo">
+                <h1 class="premio-text">PREMIO: <span class="premio-valor">5 monedas</span></h1>
+            </div>
+        </div>        
+        <div class="llanta-button" id="rueda-button">🛞</div>
+        <!-- Máquina tragaperras -->
+        <div class="slot-machine-container">
+                <div class="slot-machine">
+                <div class="reel">
+                    <img src="assets/cigarrillos.png" alt="Cigarrillo">
+                    <img src="assets/bonus.png" alt="Cigarrillo">
+                    <img src="assets/Boina.png" alt="Cigarrillo">
+                    <img src="assets/Revolver.png" alt="Cigarrillo">
+                    <img src="assets/Wild.png" alt="Cigarrillo">
+                </div>
+                <div class="separador"></div>
+                <div class="reel">
+                    <img src="assets/cigarrillos.png" alt="Cigarrillo">
+                    <img src="assets/bonus.png" alt="Cigarrillo">
+                    <img src="assets/Boina.png" alt="Cigarrillo">
+                    <img src="assets/Revolver.png" alt="Cigarrillo">
+                    <img src="assets/Wild.png" alt="Cigarrillo">
+                </div>
+                <div class="separador"></div>
+                <div class="reel">
+                    <img src="assets/cigarrillos.png" alt="Cigarrillo">
+                    <img src="assets/bonus.png" alt="Cigarrillo">
+                    <img src="assets/Boina.png" alt="Cigarrillo">
+                    <img src="assets/Revolver.png" alt="Cigarrillo">
+                    <img src="assets/Wild.png" alt="Cigarrillo">
+                </div>
+                <div class="separador"></div>
+                <div class="reel">
+                    <img src="assets/cigarrillos.png" alt="Cigarrillo">
+                    <img src="assets/bonus.png" alt="Cigarrillo">
+                    <img src="assets/Boina.png" alt="Cigarrillo">
+                    <img src="assets/Revolver.png" alt="Cigarrillo">
+                    <img src="assets/Wild.png" alt="Cigarrillo">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</div>
+</body>
+</html>
