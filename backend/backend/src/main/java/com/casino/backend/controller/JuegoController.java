@@ -12,10 +12,12 @@ public class JuegoController {
         return "juegos/tragaperras"; 
     }
 
+
     @GetMapping("/dino")
     public String mostrarCarreraCaballos() {
         return "juegos/dino"; 
-    }   
+    }  
+     
 
     @GetMapping("/ruleta")
     public String mostrarRuleta() {
