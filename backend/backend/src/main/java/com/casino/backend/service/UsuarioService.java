@@ -29,4 +29,6 @@ public class UsuarioService {
                 .filter(u -> u.getContraseya().equals(contraseya)) 
                 .orElseThrow(() -> new RuntimeException("Credenciales incorrectas."));
     }
+
+    
 }
