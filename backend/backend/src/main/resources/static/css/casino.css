@@ -1,31 +1,75 @@
 @charset "ISO-8859-1";
+
+@font-face {
+    font-family: 'PeakyBlindersFont';
+    src: url('/fuente/SalvajeOeste.otf') format('opentype'); 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     text-align: center;
     font-family: 'PeakyBlindersFont', sans-serif;
-    background-image: url('/imagenes/casino-fondo.jpg');
+    background: url('/imagenes/casino-fondo.webp') no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
     color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Evita desplazamiento */
 }
 
 h1 {
     font-size: 50px;
-    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
 }
 
 h2 {
     font-size: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+}
+
+.saldo-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.ingresar-button {
+    display: inline-block;
+    background-color: gold;
+    color: black;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.ingresar-button:hover {
+    background: #c89e00;
 }
 
 .game-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
 }
 
 .game {
-    width: 300px;
+    width: 250px;
     text-align: center;
 }
 
@@ -33,11 +77,28 @@ h2 {
     width: 100%;
     height: auto;
     border-radius: 10px;
-    transition: transform 0.5s;
+    transition: transform 0.5s, filter 0.5s;
 }
 
 .game img:hover {
-    transform: rotateY(360deg);
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.game-button {
+    display: block;
+    margin-top: 10px;
+    background: gold;
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.game-button:hover {
+    background: #c89e00;
 }
 
 p {
@@ -47,3 +108,37 @@ p {
     padding: 10px;
     border-radius: 5px;
 }
+body {
+    text-align: center;
+    font-family: 'PeakyBlindersFont', sans-serif;
+    background-image: url('/imagenes/Fondotragaperras.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+h1 {
+    font-size: 50px;
+    text-shadow: 2px 2px 5px black;
+}
+
+form {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+button {
+    background: gold;
+    color: black;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkgoldenrod;
+}
+

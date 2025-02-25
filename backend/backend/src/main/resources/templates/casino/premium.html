@@ -11,6 +11,12 @@
     <h1>Bienvenido al Casino Shelby - VIP</h1>
     <h2>Juega con dinero real</h2>
 
+    <div class="saldo-container">
+        <h3>Saldo en cuenta:</h3>
+        <p th:text="${usuario != null ? usuario.saldo + ' €' : '0 €'}" class="saldo-texto"></p>
+    </div>
+    
+
     <div class="game-container">
         <div class="game">
             <img id="game1" src="/imagenes/tragaperras.webp" onmouseover="changeGameImage(games[0])" class="game-image">
@@ -25,5 +31,9 @@
             <a href="/ruleta" class="game-button">Ruleta Premium</a>
         </div>
     </div>
+    <form action="/usuarios/deposito" method="get">
+        <button type="submit" class="btn btn-success">Ingresar Saldo</button>
+    </form>
+    
 </body>
 </html>

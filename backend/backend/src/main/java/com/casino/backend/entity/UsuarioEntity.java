@@ -1,16 +1,16 @@
 package com.casino.backend.entity;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "usuario")
 public class UsuarioEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
-	private Integer idUsuario;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
+    private Long idUsuario;
 
     @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
@@ -25,15 +25,12 @@ public class UsuarioEntity {
     @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "saldo", columnDefinition = "DECIMAL(10,2) DEFAULT 0.00")
-    private Double saldo;
+    @Column(name = "saldo", precision = 10, scale = 2, nullable = false)
+    private BigDecimal saldo = BigDecimal.ZERO;
 
-    
-    public UsuarioEntity() {
-    }
+    public UsuarioEntity() {}
 
-    
-    public UsuarioEntity(Integer idUsuario, String nombre, String contraseya, Rol rol, String email, Double saldo) {
+    public UsuarioEntity(Long idUsuario, String nombre, String contraseya, Rol rol, String email, BigDecimal saldo) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.contraseya = contraseya;
@@ -42,12 +39,11 @@ public class UsuarioEntity {
         this.saldo = saldo;
     }
 
-    
-    public Integer getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -83,13 +79,11 @@ public class UsuarioEntity {
         this.email = email;
     }
 
-    public Double getSaldo() {
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Double saldo) {
+    public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
     }
-
-    
 }
