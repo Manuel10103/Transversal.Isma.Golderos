@@ -8,8 +8,8 @@ window.addEventListener("load", function () {
 // Alterna blanco y negro para el fondo
 document.getElementById("blancoynegro").addEventListener("click", function () {
     document.body.classList.toggle('blanco-y-negro');
-    const fondoOriginal = 'assets/Fondotragaperras.jpeg';
-    const fondoBN = 'assets/Fondotragaperras-modified.jpeg';
+    const fondoOriginal = '/imagenes/Fondotragaperras.jpeg';
+    const fondoBN = '/imagenes/Fondotragaperras-modified.jpeg';
     document.body.style.backgroundImage = document.body.classList.contains('blanco-y-negro') ? `url(${fondoBN})` : `url(${fondoOriginal})`;
 });
 
@@ -146,47 +146,47 @@ function actualizarSaldo() {
 }
 // Lista de símbolos y sus rutas o emojis
 const symbols = [
-    { name: 'boina', src: 'assets/boina.png' },
-    { name: 'boina', src: 'assets/boina.png' },
-    { name: 'boina', src: 'assets/boina.png' },
-    { name: 'boina', src: 'assets/boina.png' },
-    { name: 'boina', src: 'assets/boina.png' },
-    { name: 'boina', src: 'assets/boina.png' },
-    { name: 'boina', src: 'assets/boina.png' },
-    { name: 'boina', src: 'assets/boina.png' },
+    { name: 'boina', src: '/imagenes/boina.png' },
+    { name: 'boina', src: '/imagenes/boina.png' },
+    { name: 'boina', src: '/imagenes/boina.png' },
+    { name: 'boina', src: '/imagenes/boina.png' },
+    { name: 'boina', src: '/imagenes/boina.png' },
+    { name: 'boina', src: '/imagenes/boina.png' },
+    { name: 'boina', src: '/imagenes/boina.png' },
+    { name: 'boina', src: '/imagenes/boina.png' },
 
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
-    { name: 'revolver', src: 'assets/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
+    { name: 'revolver', src: '/imagenes/Revolver.png' },
 
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
-    { name: 'cigarrillos', src: 'assets/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
+    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
     
-    { name: 'Wild', src: 'assets/Wild.png' },
+    { name: 'Wild', src: '/imagenes/Wild.png' },
 
-    { name: 'bonus', src: 'assets/Bonus.png' },
+    { name: 'bonus', src: '/imagenes/Bonus.png' },
 
     { name: 'revolveremoti', emoji: '🔫' },
     { name: 'revolveremoti', emoji: '🔫' },

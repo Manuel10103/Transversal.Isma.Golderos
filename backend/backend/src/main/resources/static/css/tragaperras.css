@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: url('assets/Fondotragaperras.jpeg');
+    background-image: url('/imagenes/Fondotragaperras.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -126,7 +126,7 @@ header {
 
 @font-face {
     font-family: "PEAKYBLINDERSFONT";
-    src: url("Fuentes/Salvaje Oeste.otf") format("opentype");
+    src: url("/fuente/Salvaje Oeste.otf") format("opentype");
 }
 
 header h1 {

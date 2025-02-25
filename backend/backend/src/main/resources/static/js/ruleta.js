@@ -489,8 +489,4 @@ function retirar() {
         compteElement.textContent = nuevoSaldo + "€"; 
     }
 }
-
-
 let resultados = [];
-
-
