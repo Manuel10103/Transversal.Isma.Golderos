@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingresar Saldo - Shelby Casino</title>
+    <link rel="stylesheet" href="/css/casino.css">
+    <link rel="icon" type="image/png" href="/imagenes/logo.jpg">
+    <link rel="stylesheet" href="/css/ingresar-saldo.css">
+    <script src="/js/ingresar_saldo.js"></script>
+    
+</head>
+<body>
+    <h1>Ingresar Saldo</h1>
+
+    <div class="form-container">
+        <form action="/casino/procesar-ingreso" method="post">
+            <label for="banco">Entidad Bancaria:</label>
+            <select id="banco" name="banco" required>
+                <option value="Santander">Santander</option>
+                <option value="BBVA">BBVA</option>
+                <option value="CaixaBank">CaixaBank</option>
+                <option value="Bankia">Bankia</option>
+            </select>
+
+            <label for="tarjeta">Número de Tarjeta:</label>
+            <input type="text" id="tarjeta" name="tarjeta" required placeholder="XXXX XXXX XXXX XXXX" maxlength="19" oninput="formatTarjeta(this)">
+
+            <div class="tarjeta-container">
+                <input type="text" id="caducidad" name="caducidad" placeholder="MM/AA" maxlength="5" required oninput="formatFecha(this)">
+                <input type="text" id="cvv" name="cvv" placeholder="CVV" maxlength="3" required>
+            </div>
+
+            <label for="monto">Cantidad a Ingresar:</label>
+            <input type="number" step="0.01" id="monto" name="monto" required>
+
+            <button type="submit">Confirmar Ingreso</button>
+        </form>
+
+        <!-- Mensaje de éxito o error después del ingreso -->
+        <p th:if="${mensaje}" style="color: green; font-size: 1.2em; margin-top: 15px;" th:text="${mensaje}"></p>
+        <p th:if="${error}" style="color: red; font-size: 1.2em; margin-top: 15px;" th:text="${error}"></p>
+
+        <!-- Botón para volver al casino -->
+        <a href="/casino/premium">
+            <button style="background: #b4975a; color: black; font-size: 1.2em; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; margin-top: 15px; border-radius: 5px;">
+                Volver al Casino
+            </button>
+        </a>
+    </div>
+
+    <script src="/js/ingresar_saldo.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+        body {
+            background: url('/imagenes/peaky_blinders_bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Cinzel', serif;
+            color: #e1c699;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 8px black;
+        }
+
+        .form-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 50px;
+            width: 50%;
+            max-width: 500px;
+        }
+
+        label {
+            font-size: 1.3em;
+            display: block;
+            margin-top: 10px;
+        }
+
+        select, input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #b4975a;
+            background: #333;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #b4975a;
+            color: black;
+            font-size: 1.4em;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #e1c699;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #e1c699;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .tarjeta-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .tarjeta-container input {
+            width: 48%;
+        }
