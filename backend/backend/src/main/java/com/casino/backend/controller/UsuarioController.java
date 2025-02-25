@@ -1,6 +1,9 @@
 package com.casino.backend.controller;
 
+import com.casino.backend.entity.TipoTransaccion;
+import com.casino.backend.entity.Transaccion;
 import com.casino.backend.entity.UsuarioEntity;
+import com.casino.backend.repo.TransaccionRepository;
 import com.casino.backend.repo.UsuarioRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Controller
@@ -17,28 +21,34 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private TransaccionRepository transaccionRepository;
 
-    // MOSTRAR FORMULARIO DE REGISTRO
+    // 🟢 FORMULARIO DE REGISTRO
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("usuario", new UsuarioEntity());
-        return "usuarios/registro";
+        return "usuarios/registro"; // 📌 Asegúrate de que este archivo existe
     }
 
-    // PROCESAR REGISTRO
+    // 🟢 PROCESAR REGISTRO
     @PostMapping("/registro")
     public String registrarUsuario(@ModelAttribute UsuarioEntity usuario) {
+        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+            return "redirect:/usuarios/registro?error=usuario_existe";
+        }
         usuarioRepository.save(usuario);
-        return "redirect:/usuarios/login";
+        return "redirect:/usuarios/login?registro=exitoso";
     }
 
-    // MOSTRAR FORMULARIO DE LOGIN
+    // 🟢 FORMULARIO DE LOGIN
     @GetMapping("/login")
     public String mostrarFormularioLogin() {
-        return "usuarios/login";
+        return "usuarios/login"; // 📌 Asegúrate de que este archivo existe
     }
 
-    // PROCESAR LOGIN
+    // 🟢 PROCESAR LOGIN
     @PostMapping("/login")
     public String login(@RequestParam String email, 
                         @RequestParam(name = "contraseya") String password, 
@@ -52,9 +62,9 @@ public class UsuarioController {
                 session.setAttribute("usuario", usuario); 
 
                 if ("PREMIUM".equals(usuario.getRol().name())) {
-                    return "redirect:/casino/premium";
+                    return "redirect:/casino/premium"; // 📌 Asegúrate de que esta ruta existe
                 } else {
-                    return "redirect:/casino/normal";
+                    return "redirect:/casino/normal"; // 📌 Asegúrate de que esta ruta existe
                 }
             }
         }
@@ -63,10 +73,40 @@ public class UsuarioController {
         return "usuarios/login";
     }
 
+    // 🟢 CERRAR SESIÓN (LOGOUT)
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); 
         return "redirect:/usuarios/login";
     }
 
+    // 🟢 FORMULARIO DE DEPÓSITO (Mantenemos todo lo demás)
+    @GetMapping("/deposito")
+    public String mostrarFormularioDeposito(Model model) {
+        model.addAttribute("transaccion", new Transaccion());
+        return "usuarios/deposito"; // 📌 Asegúrate de que este archivo existe
+    }
+
+    // 🟢 PROCESAR DEPÓSITO
+    @PostMapping("/deposito")
+public String procesarDeposito(@RequestParam BigDecimal monto,
+                               @RequestParam String tarjeta,
+                               @RequestParam String fechaExpiracion,
+                               @RequestParam String cvv,
+                               HttpSession session) {
+    UsuarioEntity usuario = (UsuarioEntity) session.getAttribute("usuario");
+
+    if (usuario != null) {
+        usuario.setSaldo(usuario.getSaldo().add(monto));
+        usuarioRepository.save(usuario);
+
+        Transaccion transaccion = new Transaccion(usuario, TipoTransaccion.DEPOSITO, monto, tarjeta, fechaExpiracion, cvv);
+        transaccionRepository.save(transaccion);
+
+        session.setAttribute("usuario", usuario); // Actualiza el saldo en sesión
+    }
+
+    return "redirect:/casino/premium";
 }
+    }
+
