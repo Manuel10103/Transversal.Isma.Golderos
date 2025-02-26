@@ -85,5 +85,5 @@ public class UsuarioEntity {
 
     public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
-    }
+    }    
 }
