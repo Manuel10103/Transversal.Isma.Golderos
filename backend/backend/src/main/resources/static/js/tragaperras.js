@@ -144,62 +144,16 @@ document.getElementById('cerrar-necesita-saldo').addEventListener('click', cerra
 function actualizarSaldo() {
     document.getElementById("saldo").textContent = `Saldo: $${saldo.toFixed(2)}`;
 }
+
 // Lista de símbolos y sus rutas o emojis
 const symbols = [
     { name: 'boina', src: '/imagenes/boina.png' },
-    { name: 'boina', src: '/imagenes/boina.png' },
-    { name: 'boina', src: '/imagenes/boina.png' },
-    { name: 'boina', src: '/imagenes/boina.png' },
-    { name: 'boina', src: '/imagenes/boina.png' },
-    { name: 'boina', src: '/imagenes/boina.png' },
-    { name: 'boina', src: '/imagenes/boina.png' },
-    { name: 'boina', src: '/imagenes/boina.png' },
-
     { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-    { name: 'revolver', src: '/imagenes/Revolver.png' },
-
     { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    { name: 'cigarrillos', src: '/imagenes/cigarrillos.png' },
-    
     { name: 'Wild', src: '/imagenes/Wild.png' },
-
     { name: 'bonus', src: '/imagenes/Bonus.png' },
-
     { name: 'revolveremoti', emoji: '🔫' },
-    { name: 'revolveremoti', emoji: '🔫' },
-    { name: 'revolveremoti', emoji: '🔫' },
-    { name: 'revolveremoti', emoji: '🔫' },
-    { name: 'revolveremoti', emoji: '🔫' },
-
     { name: 'sombrero', emoji: '🎩' },
-    { name: 'sombrero', emoji: '🎩' },
-    { name: 'sombrero', emoji: '🎩' },
-    { name: 'sombrero', emoji: '🎩' },
-    { name: 'sombrero', emoji: '🎩' },
-
 ];
 
 // Función para girar los carriles
@@ -227,9 +181,29 @@ function spinReels() {
         });
 
         checkForWin(results); // Verificar si hay premios
+        registrarJugada(results); // Registrar la jugada
     } else {
         mostrarNecesitaSaldoModal(); // Mostrar directamente "Necesitas más saldo"
     }
+}
+
+// Función para registrar la jugada
+function registrarJugada(resultados) {
+    fetch('/api/jugada/registrar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuario: "usuario_logueado", // Reemplazar con el usuario real
+            saldo: saldo,
+            resultado: resultados,
+            fecha: new Date().toISOString()
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log("Jugada registrada:", data))
+    .catch(error => console.error("Error registrando la jugada:", error));
 }
 
 // Mostrar el modal de felicitaciones (revólveres)
@@ -260,6 +234,7 @@ function mostrarModalPremio(mensaje) {
     document.querySelector('.close-premio').addEventListener('click', cerrarModal);
     premioModal.addEventListener('click', cerrarModal);
 }
+
 // Lógica para verificar premios
 function checkForWin(results) {
     const revolverPrize = 0.50; // Premio por 4 revólveres
@@ -288,16 +263,8 @@ function checkForWin(results) {
     }
 }
 
-
-// Actualizar saldo en pantalla
-function actualizarSaldo() {
-    document.getElementById("saldo").textContent = `Saldo: $${saldo.toFixed(2)}`;
-}
-
 // Evento para el botón de giro
 document.getElementById('rueda-button').addEventListener('click', spinReels);
-
-
 
 // Objeto con las traducciones
 const traducciones = {
@@ -309,12 +276,22 @@ const traducciones = {
       title: "Welcome to my page",
       description: "This is a sample page."
     }
-  };
-  
-  // Función para cambiar el idioma
-  function cambiarIdioma() {
+};
+
+// Función para cambiar el idioma
+function cambiarIdioma() {
     document.getElementById("title").innerText = traducciones.en.title;
     document.getElementById("description").innerText = traducciones.en.description;
     document.documentElement.lang = "en"; // Cambia el atributo lang del HTML a inglés
-  }
-  
+}
+
+// Funcion para el saldo del usuario 
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('/api/usuario/saldo')
+        .then(response => response.json())
+        .then(data => {
+            saldo = data.saldo; // Guarda el saldo obtenido de la base de datos
+            actualizarSaldo();
+        })
+        .catch(error => console.error("Error obteniendo el saldo:", error));
+});
