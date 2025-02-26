@@ -1,4 +1,25 @@
-// Reproducción de música al cargar
+// Definición de símbolos (ajusta según tu lógica)
+const symbols = [
+    { name: 'cigarrillos', src: '/imagenes/Cigarrillos.png' },
+    { name: 'boina',       src: '/imagenes/Boina.png' },
+    { name: 'revolver',    src: '/imagenes/Revolver.png' },
+    { name: 'bonus',       src: '/imagenes/bonus.png' },
+    { name: 'wild',        src: '/imagenes/Wild.png' }
+];
+
+let saldo = 0; // Saldo que se maneja en el front
+let resultados = [];
+
+// Reloj
+function updateClock() {
+    const clock = document.getElementById("clock");
+    if (clock) {
+        clock.textContent = new Date().toLocaleTimeString();
+    }
+}
+setInterval(updateClock, 1000);
+updateClock();
+
 window.addEventListener("load", function () {
     const ambiente = document.getElementById("ambiente");
     if (ambiente) {
@@ -7,7 +28,7 @@ window.addEventListener("load", function () {
     }
 });
 
-// Alterna blanco y negro para el fondo
+// Alternar blanco y negro
 const fondoBtn = document.getElementById("blancoynegro");
 if (fondoBtn) {
     fondoBtn.addEventListener("click", function () {
@@ -47,19 +68,7 @@ if (volumeControl) {
     });
 }
 
-// Actualizar hora cada segundo
-function updateClock() {
-    const clock = document.getElementById("clock");
-    if (clock) {
-        clock.textContent = new Date().toLocaleTimeString();
-    }
-}
-setInterval(updateClock, 1000);
-updateClock();
-
-// Modal para el saldo
-let saldo = 0;
-
+// Funciones de modales
 function abrirModal(accion) {
     const modal = document.getElementById('dineroModal');
     if (modal) {
@@ -67,61 +76,46 @@ function abrirModal(accion) {
         modal.style.display = 'flex';
     }
 }
-
 function cerrarModal() {
     const modal = document.getElementById('dineroModal');
     if (modal) {
         modal.style.display = 'none';
     }
 }
-
-// Eventos para cerrar modales
 const closeBtns = document.querySelectorAll('.close');
 closeBtns.forEach(btn => btn.addEventListener('click', cerrarModal));
 
-const ingresarBtn = document.getElementById('ingresar-dinero');
-if (ingresarBtn) {
-    ingresarBtn.addEventListener('click', function () {
-        abrirModal('Ingresar Dinero');
-    });
+function mostrarNecesitaSaldoModal() {
+    const necesitaSaldoModal = document.getElementById('necesitaSaldoModal');
+    if (necesitaSaldoModal) {
+        necesitaSaldoModal.style.display = 'flex';
+    }
+}
+function cerrarNecesitaSaldoModal() {
+    const necesitaSaldoModal = document.getElementById('necesitaSaldoModal');
+    if (necesitaSaldoModal) {
+        necesitaSaldoModal.style.display = 'none';
+    }
+}
+const cerrarNecesitaSaldoModalBtn = document.getElementById('cerrar-necesita-saldo');
+if (cerrarNecesitaSaldoModalBtn) {
+    cerrarNecesitaSaldoModalBtn.addEventListener('click', cerrarNecesitaSaldoModal);
 }
 
-const retirarBtn = document.getElementById('retirar-dinero');
-if (retirarBtn) {
-    retirarBtn.addEventListener('click', function () {
-        abrirModal('Retirar Dinero');
-    });
-}
-
-// Función para mostrar el modal de error
-function mostrarErrorModal(mensaje) {
-    const errorModal = document.getElementById('errorModal');
-    const errorMessage = document.getElementById('error-message');
-    if (errorModal && errorMessage) {
-        errorMessage.textContent = mensaje;
-        errorModal.style.display = 'flex';
+// Actualizar saldo en pantalla
+function actualizarSaldo() {
+    const saldoElemento = document.getElementById("saldo");
+    if (saldoElemento) {
+        saldoElemento.textContent = `Saldo: €${saldo.toFixed(2)}`;
     }
 }
 
-// Función para cerrar el modal de error
-function cerrarErrorModal() {
-    const errorModal = document.getElementById('errorModal');
-    if (errorModal) {
-        errorModal.style.display = 'none';
-    }
-}
-
-// Vincular el botón de cierre del modal de error
-const cerrarErrorModalBtn = document.getElementById('cerrar-error-modal');
-if (cerrarErrorModalBtn) {
-    cerrarErrorModalBtn.addEventListener('click', cerrarErrorModal);
-}
-
-// Confirmar el monto
+// Confirmar ingreso/retiro
 const confirmarBtn = document.getElementById('confirmar');
 if (confirmarBtn) {
     confirmarBtn.addEventListener('click', function () {
-        const monto = parseFloat(document.getElementById('monto').value);
+        const montoInput = document.getElementById('monto');
+        const monto = parseFloat(montoInput.value);
         const title = document.getElementById('modal-title').innerText;
 
         if (isNaN(monto) || monto <= 0) {
@@ -139,71 +133,64 @@ if (confirmarBtn) {
                 return;
             }
         }
-
         actualizarSaldo();
         cerrarModal();
     });
 }
 
-// Modal para "Necesitas más saldo"
-function mostrarNecesitaSaldoModal() {
-    const necesitaSaldoModal = document.getElementById('necesitaSaldoModal');
-    if (necesitaSaldoModal) {
-        necesitaSaldoModal.style.display = 'flex';
+function mostrarErrorModal(mensaje) {
+    const errorModal = document.getElementById('errorModal');
+    const errorMessage = document.getElementById('error-message');
+    if (errorModal && errorMessage) {
+        errorMessage.textContent = mensaje;
+        errorModal.style.display = 'flex';
     }
 }
-
-function cerrarNecesitaSaldoModal() {
-    const necesitaSaldoModal = document.getElementById('necesitaSaldoModal');
-    if (necesitaSaldoModal) {
-        necesitaSaldoModal.style.display = 'none';
+function cerrarErrorModal() {
+    const errorModal = document.getElementById('errorModal');
+    if (errorModal) {
+        errorModal.style.display = 'none';
     }
 }
-
-const cerrarNecesitaSaldoModalBtn = document.getElementById('cerrar-necesita-saldo');
-if (cerrarNecesitaSaldoModalBtn) {
-    cerrarNecesitaSaldoModalBtn.addEventListener('click', cerrarNecesitaSaldoModal);
+const cerrarErrorModalBtn = document.getElementById('cerrar-error-modal');
+if (cerrarErrorModalBtn) {
+    cerrarErrorModalBtn.addEventListener('click', cerrarErrorModal);
 }
 
-// Actualizar saldo en pantalla
-function actualizarSaldo() {
-    const saldoElemento = document.getElementById("saldo");
-    if (saldoElemento) {
-        saldoElemento.textContent = `Saldo: $${saldo.toFixed(2)}`;
-    }
-}
-
-// Función para girar los carriles
+// Función para girar la máquina tragaperras
 function spinReels() {
     const costoPorTirada = 1;
-
-    if (saldo >= costoPorTirada) {
-        saldo -= costoPorTirada;
-        actualizarSaldo();
-
-        const reels = document.querySelectorAll('.reel');
-        const results = [];
-
-        reels.forEach((reel) => {
-            const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-            reel.innerHTML = randomSymbol.emoji ? `<span style="font-size: 2rem;">${randomSymbol.emoji}</span>` : `<img src="${randomSymbol.src}" alt="${randomSymbol.name}">`;
-            results.push(randomSymbol.name);
-        });
-
-        checkForWin(results);
-        registrarJugada(results);
-    } else {
+    if (saldo < costoPorTirada) {
         mostrarNecesitaSaldoModal();
+        return;
     }
+
+    saldo -= costoPorTirada;
+    actualizarSaldo();
+
+    const reels = document.querySelectorAll('.reel');
+    const results = [];
+
+    reels.forEach((reel) => {
+        const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+        reel.innerHTML = `<img src="${randomSymbol.src}" alt="${randomSymbol.name}">`;
+        results.push(randomSymbol.name);
+    });
+
+    checkForWin(results);
+    registrarJugada(results);
 }
 
-// Función para registrar la jugada
+// NUEVO: Registrar jugada enviando el nombre real del usuario
 function registrarJugada(resultados) {
+    const usernameInput = document.getElementById("username");
+    const username = usernameInput ? usernameInput.value : "Invitado";
+
     fetch('/api/jugada/registrar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            usuario: "usuario_logueado",
+            usuario: username,
             saldo: saldo,
             resultado: resultados,
             fecha: new Date().toISOString()
@@ -214,7 +201,6 @@ function registrarJugada(resultados) {
     .catch(error => console.error("Error registrando la jugada:", error));
 }
 
-// Verificar premios
 function checkForWin(results) {
     const premios = {
         revolver: 0.50,
@@ -225,7 +211,7 @@ function checkForWin(results) {
 
     if (results.every(symbol => symbol === 'revolver')) {
         saldo += premios.revolver;
-        mostrarModalFelicitaciones();
+        mostrarModalPremio('¡Felicidades! Todos los carriles "revolver", has ganado 0.50 monedas.');
     } else if (results.every(symbol => symbol === 'boina')) {
         saldo += premios.boina;
         mostrarModalPremio('¡Premio! Todos los carriles muestran "boina", has ganado 10 monedas.');
@@ -234,29 +220,69 @@ function checkForWin(results) {
         mostrarModalPremio('¡Premio! Todos los carriles muestran "cigarrillos", has ganado 5 monedas.');
     } else if (results.includes('bonus')) {
         saldo += premios.bonus;
-        mostrarModalPremio('Bonus Has ganado 1 moneda por obtener al menos un simbolo "bonus".');
+        mostrarModalPremio('Bonus: Has ganado 1 moneda por obtener al menos un símbolo "bonus".');
     } else {
         console.log('No hubo premio esta vez.');
     }
+    actualizarSaldo();
 }
 
-// Evento para el botón de giro
+function mostrarModalPremio(mensaje) {
+    const premioModal = document.getElementById('premioModal');
+    const premioMessage = document.getElementById('premio-message');
+    if (premioModal && premioMessage) {
+        premioMessage.textContent = mensaje;
+        premioModal.style.display = 'flex';
+    }
+}
+const closePremio = document.querySelector('.close-premio');
+if (closePremio) {
+    closePremio.addEventListener('click', () => {
+        const premioModal = document.getElementById('premioModal');
+        if (premioModal) premioModal.style.display = 'none';
+    });
+}
+
 const ruedaButton = document.getElementById('rueda-button');
 if (ruedaButton) {
     ruedaButton.addEventListener('click', spinReels);
 }
 
-// Obtener saldo al cargar la página
-document.addEventListener("DOMContentLoaded", function () {
-    fetch('/api/usuario/saldo')
-        .then(response => response.json())
-        .then(data => {
-            saldo = parseFloat(data.saldo);
-            actualizarSaldo();
-        })
-        .catch(error => {
-            console.error("Error obteniendo el saldo:", error);
-            mostrarErrorModal("No se pudo obtener el saldo. Inténtalo más tarde.");
-        });
-        
-});
+// Obtener saldo del back-end al cargar la página
+fetch('/api/usuario/saldo', { credentials: 'include' })
+  .then(response => {
+      if (!response.ok) throw new Error("No autenticado");
+      return response.json();
+  })
+  .then(data => {
+      console.log("Saldo recibido:", data);
+      saldo = parseFloat(data.saldo);
+      if (isNaN(saldo)) {
+          console.error("Saldo obtenido es NaN. Se asigna 0.");
+          saldo = 0;
+      }
+      actualizarUI();
+  })
+  .catch(error => {
+      console.error("Error obteniendo el saldo:", error);
+  });
+
+  function obtenerSaldoServidor() {
+    fetch('/api/usuario/saldo', { credentials: 'include' })
+      .then(response => {
+        if (!response.ok) throw new Error("No autenticado");
+        return response.json();
+      })
+      .then(data => {
+        // data.saldo: BigDecimal en el servidor, por ejemplo "300.00"
+        saldo = parseFloat(data.saldo);
+        if (isNaN(saldo)) {
+          saldo = 0;
+        }
+        actualizarUI(); // Función que pinta el saldo en pantalla
+      })
+      .catch(error => {
+        console.error("Error al obtener saldo:", error);
+      });
+  }
+  

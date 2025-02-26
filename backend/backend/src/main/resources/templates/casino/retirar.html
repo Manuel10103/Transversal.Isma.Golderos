@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Casino Shelby - Retirar Saldo</title>
+    <link rel="stylesheet" href="/css/casino.css">
+    <script src="/js/casino.js" defer></script>
+    <link rel="icon" type="image/png" href="/imagenes/logo.jpg">
+</head>
+<body>
+    <h1>Retirar Saldo - Casino Shelby</h1>
+    <h2>Ingresa el saldo que deseas retirar</h2>
+
+    <div class="saldo-container">
+        <h3>Saldo en cuenta:</h3>
+        <p th:text="${usuario != null ? usuario.saldo + ' €' : '0 €'}" class="saldo-texto"></p>
+    </div>
+
+    <!-- Mensaje de error si el saldo es insuficiente -->
+    <p id="error-message" th:text="${error}" style="color: red; display: none;" th:if="${error != null}"></p>
+
+    <!-- Formulario para retiro -->
+    <form action="/usuarios/retirar" method="POST">
+        <div class="form-group">
+            <label for="montoRetiro">Saldo a Retirar (€):</label>
+            <input type="number" id="montoRetiro" name="monto" min="1" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Confirmar Retiro</button>
+    </form>
+
+    <!-- Mensaje de éxito -->
+    <p id="success-message" th:text="${mensaje}" style="color: green; display: none;" th:if="${mensaje != null}"></p>
+
+    <!-- Botón para volver a la sesión de Casino Premium -->
+    <form action="/casino/premium" method="GET">
+        <button type="submit" class="btn btn-primary">Volver a Casino Premium</button>
+    </form>
+
+</body>
+</html>
