@@ -35,7 +35,7 @@ public class UsuarioController {
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("usuario", new UsuarioEntity());
-        return "usuarios/registro"; // 📌 Asegúrate de que este archivo existe
+        return "usuarios/registro"; 
     }
 
     // 🟢 PROCESAR REGISTRO
@@ -51,7 +51,7 @@ public class UsuarioController {
     // 🟢 FORMULARIO DE LOGIN
     @GetMapping("/login")
     public String mostrarFormularioLogin() {
-        return "usuarios/login"; // 📌 Asegúrate de que este archivo existe
+        return "usuarios/login"; 
     }
 
     // 🟢 PROCESAR LOGIN
@@ -68,9 +68,9 @@ public class UsuarioController {
                 session.setAttribute("usuario", usuario);
 
                 if ("PREMIUM".equals(usuario.getRol().name())) {
-                    return "redirect:/casino/premium"; // 📌 Asegúrate de que esta ruta existe
+                    return "redirect:/casino/premium"; 
                 } else {
-                    return "redirect:/casino/normal"; // 📌 Asegúrate de que esta ruta existe
+                    return "redirect:/casino/normal"; 
                 }
             }
         }
@@ -79,21 +79,21 @@ public class UsuarioController {
         return "usuarios/login";
     }
 
-    // 🟢 CERRAR SESIÓN (LOGOUT)
+    //  CERRAR SESIÓN (LOGOUT)
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/usuarios/login";
     }
 
-    // 🟢 FORMULARIO DE DEPÓSITO
+    //  FORMULARIO DE DEPÓSITO
     @GetMapping("/deposito")
     public String mostrarFormularioDeposito(Model model) {
         model.addAttribute("transaccion", new Transaccion());
         return "usuarios/deposito"; // 📌 Asegúrate de que este archivo existe
     }
 
-    // 🟢 PROCESAR DEPÓSITO
+    //  PROCESAR DEPÓSITO
     @PostMapping("/deposito")
     public String procesarDeposito(@RequestParam BigDecimal monto,
                                    @RequestParam String tarjeta,
@@ -115,13 +115,18 @@ public class UsuarioController {
         return "redirect:/casino/premium";
     }
 
-    // 🟢 OBTENER SALDO DEL USUARIO
+    //  OBTENER SALDO DEL USUARIO
     @GetMapping("/api/usuario/saldo")
-    public ResponseEntity<?> obtenerSaldo(@RequestParam String usuario) {
-        UsuarioEntity usuarioEncontrado = usuarioService.buscarPorNombre(usuario);
-        if (usuarioEncontrado != null) {
-            return ResponseEntity.ok(Collections.singletonMap("saldo", usuarioEncontrado.getSaldo()));
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+public ResponseEntity<?> obtenerSaldo(HttpSession session) {
+    UsuarioEntity usuario = (UsuarioEntity) session.getAttribute("usuario");
+
+    if (usuario != null) {
+        return ResponseEntity.ok(Collections.singletonMap("saldo", usuario.getSaldo()));
     }
+
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autenticado");
+}
+
+
+
 }

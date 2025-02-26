@@ -48,6 +48,6 @@ public class UsuarioService {
 
     public void actualizarUsuario(UsuarioEntity usuario) {
         usuarioRepository.save(usuario);
-    }
+    }    
     
 }
