@@ -455,17 +455,13 @@ function ingresar() {
     var saldo = parseInt(saldoInput);
 
     cerrarModal("modalIngresar");
-	
-    // Verificar si la cantidad ingresada es un número válido y mayor que cero
+
     if (isNaN(saldo) || saldo <= 0 || saldoInput !== saldo.toString()) {
         mostrarError("Por favor, ingrese una cantidad válida que sea un número mayor que cero.");
     } else {
-        account = saldo; 
-        tempAccount = saldo; 
-        var saldoElement = document.getElementById("Saldo");
-        saldoElement.textContent = account + "€"; 
-        var compteElement = document.getElementById("compte");
-        compteElement.textContent = account + "€"; 
+        account += saldo;  // 🔴 ERROR corregido: antes asignaba en lugar de sumar
+        tempAccount = account; 
+        actualizarSaldoEnHTML();
     }
 }
 

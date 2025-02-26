@@ -15,7 +15,6 @@
         <h3>Saldo en cuenta:</h3>
         <p th:text="${usuario != null ? usuario.saldo + ' €' : '0 €'}" class="saldo-texto"></p>
     </div>
-    
 
     <div class="game-container">
         <div class="game">
@@ -33,7 +32,8 @@
     </div>
     <form action="/usuarios/deposito" method="get">
         <button type="submit" class="btn btn-success">Ingresar Saldo</button>
+       
     </form>
-    
+    <button type="submit" class="btn btn-success"><a href="/usuarios/retirar" class="btn btn-danger">Retirar Saldo</a></button>
 </body>
 </html>
