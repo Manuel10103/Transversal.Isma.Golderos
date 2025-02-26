@@ -39,4 +39,15 @@ public class UsuarioService {
             return true;
         }).orElse(false);
     }
+
+    // 🟢 MÉTODO CORREGIDO PARA BUSCAR UN USUARIO POR NOMBRE
+    public UsuarioEntity buscarPorNombre(String nombre) {
+        return usuarioRepository.findByNombre(nombre)
+                .orElse(null);
+    }
+
+    public void actualizarUsuario(UsuarioEntity usuario) {
+        usuarioRepository.save(usuario);
+    }
+    
 }
