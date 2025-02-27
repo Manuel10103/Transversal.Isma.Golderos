@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => { errorModal.style.display = "none"; }, 3000);
     }
 
-    // Obtiene el saldo real del servidor (usando la ruta correcta con prefijo /usuarios)
+    // Obtiene el saldo real del servidor 
     function obtenerSaldoServidor() {
         fetch('/usuarios/saldo', { credentials: 'include' })
             .then(response => {
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Envía al back-end los datos de la jugada para que se actualice el saldo en la BD
     function registrarJugada(resultado, monto, ganancia) {
-        // Ya no hace falta username
+     
         fetch('/api/jugada/registrar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
