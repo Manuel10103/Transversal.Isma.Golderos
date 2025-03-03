@@ -7,14 +7,11 @@ import com.casino.backend.repo.JugadaRepository;
 import com.casino.backend.repo.UsuarioRepository;
 import com.casino.backend.service.JugadaService;
 import com.casino.backend.service.UsuarioService;
-
 import jakarta.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collections;

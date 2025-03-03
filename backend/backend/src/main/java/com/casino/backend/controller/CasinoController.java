@@ -12,7 +12,6 @@ public class CasinoController {
 
     @GetMapping("/normal")
     public String mostrarZonaNormal(HttpSession session, Model model) {
-        // Verificar si el usuario está en sesión
         Object usuario = session.getAttribute("usuario");
         if (usuario == null) {
             return "redirect:/usuarios/login"; 
@@ -23,8 +22,7 @@ public class CasinoController {
     }
 
     @GetMapping("/premium")
-    public String mostrarZonaPremium(HttpSession session, Model model) {
-        
+    public String mostrarZonaPremium(HttpSession session, Model model) {   
         Object usuario = session.getAttribute("usuario");
         if (usuario == null) {
             return "redirect:/usuarios/login"; 

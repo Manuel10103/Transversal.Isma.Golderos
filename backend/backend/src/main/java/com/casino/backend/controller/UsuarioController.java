@@ -5,7 +5,6 @@ import com.casino.backend.entity.Transaccion;
 import com.casino.backend.entity.UsuarioEntity;
 import com.casino.backend.repo.TransaccionRepository;
 import com.casino.backend.repo.UsuarioRepository;
-import com.casino.backend.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,18 +24,20 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    
+
     @Autowired
     private TransaccionRepository transaccionRepository;
 
     
-    // 🟢 FORMULARIO DE REGISTRO
+    //  FORMULARIO DE REGISTRO
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("usuario", new UsuarioEntity());
         return "usuarios/registro"; 
     }
 
-    // 🟢 PROCESAR REGISTRO
+    //  PROCESAR REGISTRO
     @PostMapping("/registro")
     public String registrarUsuario(@ModelAttribute UsuarioEntity usuario) {
         if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
@@ -46,13 +47,13 @@ public class UsuarioController {
         return "redirect:/usuarios/login?registro=exitoso";
     }
 
-    // 🟢 FORMULARIO DE LOGIN
+    //  FORMULARIO DE LOGIN
     @GetMapping("/login")
     public String mostrarFormularioLogin() {
         return "usuarios/login"; 
     }
 
-    // 🟢 PROCESAR LOGIN
+    //  PROCESAR LOGIN
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam(name = "contraseya") String password,
@@ -72,7 +73,6 @@ public class UsuarioController {
                 }
             }
         }
-
         model.addAttribute("error", "Credenciales incorrectas");
         return "usuarios/login";
     }
